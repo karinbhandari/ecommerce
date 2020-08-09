@@ -1,0 +1,12 @@
+{
+  "extensions": {
+    "endpoints": {
+      "cmushrif-dev": {
+        "url": "http://cmushrif-dev.emushrif.om:5433/graphql",
+        "headers": {
+          "Authorization": BEARER_TOKEN
+        }
+      }
+    }
+  }
+}
