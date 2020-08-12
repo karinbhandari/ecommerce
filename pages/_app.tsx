@@ -61,13 +61,13 @@ const App = (props: AppProps): ReactNode => {
               <SnackBar />
               <CssBaseline />
               <Component {...pageProps} />
-              <NextNprogress
+              {/* <NextNprogress
                 color="#0189e6"
                 height="3"
                 options={{
                   showSpinner: false,
                 }}
-              />
+              /> */}
             </ThemeProvider>
           </Context.Provider>
         </ApolloProvider>
