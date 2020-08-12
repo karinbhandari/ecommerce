@@ -7,7 +7,7 @@ import { muiDataTables } from './mui-datatables'
 const theme = createMuiTheme({
   typography: {
     fontFamily: [
-      // 'Jost',
+      'Jost',
       '-apple-system',
       'BlinkMacSystemFont',
       '"Segoe UI"',
