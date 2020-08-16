@@ -15,6 +15,7 @@ authAxios.interceptors.request.use(
     const token = authToken;
     if (token) {
       config.headers.Authorization = token;
+      config.headers.allow;
     }
     return config;
   },
