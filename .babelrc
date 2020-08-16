@@ -2,9 +2,4 @@
   "presets": [
     "next/babel"
   ],
-  "plugins": [
-    [
-      "graphql-tag"
-    ]
-  ]
 }

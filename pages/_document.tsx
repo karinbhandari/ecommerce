@@ -8,7 +8,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          {/* <title>C_Mushrif</title> */}
+          <title>Ecommerce</title>
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
           <link rel="icon" href="/static/logo/logo@2x.png" />
 
@@ -24,8 +24,7 @@ export default class MyDocument extends Document {
 
           {/* *************** END MATERIAL_UI PWA primary color *************** */}
         </Head>
-        <body
-        >
+        <body>
           <Main />
           <NextScript />
         </body>

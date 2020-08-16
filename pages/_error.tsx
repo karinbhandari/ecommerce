@@ -3,9 +3,7 @@ import React from 'react'
 const Error = ({ statusCode }) => {
   return (
     <p>
-      {statusCode
-        ? `An error ${statusCode} occurred on server`
-        : 'An error occurred on client'}
+      {statusCode ? `An error ${statusCode} occurred on server` : 'An error occurred on client'}
     </p>
   )
 }
@@ -32,10 +30,9 @@ export default Error
 //   const errorInitialProps = await NextErrorComponent.getInitialProps({
 //     res,
 //     err,
-//   }) 
+//   })
 
 //   errorInitialProps.hasGetInitialPropsRun = true
-
 
 //   if (res?.statusCode === 404) {
 //     return { statusCode: 404 }

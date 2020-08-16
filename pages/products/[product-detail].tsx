@@ -1,11 +1,17 @@
-import React, { useState, ReactElement } from 'react'
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles'
-import { Typography, Theme, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core'
+import React, { useState, ReactElement } from 'react';
+import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import {
+  Typography,
+  Theme,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from '@material-ui/core';
 // import PersonOutlineRoundedIcon from '@material-ui/icons/PersonOutlineRounded'
-import Layout from '../../src/modules/core/components/Layout'
-import ProductDetailSlider from '../../src/modules/core/components/Product/ProductDetailSlider/ProductDetailSlider'
-import utilities from '../../src/styles/utilities'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import Layout from '../../src/modules/core/components/Layout';
+import ProductDetailSlider from '../../src/modules/core/components/Product/ProductDetailSlider/ProductDetailSlider';
+import utilities from '../../src/styles/utilities';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const ProductDetailStyle = (theme: Theme) =>
   createStyles({
@@ -53,15 +59,15 @@ const ProductDetailStyle = (theme: Theme) =>
       ...utilities.columnFlex,
       //   border: '1px solid red',
     },
-  })
+  });
 
-type ProductDetailProps = {}
+type ProductDetailProps = {};
 
-type ProductDetailStyleType = ProductDetailProps & WithStyles<typeof ProductDetailStyle>
+type ProductDetailStyleType = ProductDetailProps & WithStyles<typeof ProductDetailStyle>;
 
 const ProductDetail = ({ classes }: ProductDetailStyleType): ReactElement => {
   return (
-    <Layout>
+    <Layout detailHeader={true} headerText={'Demo Product'}>
       <div className={classes.ProductDetailWrap}>
         <div className={classes.ProductDetailSlider}>
           <ProductDetailSlider />
@@ -119,7 +125,7 @@ const ProductDetail = ({ classes }: ProductDetailStyleType): ReactElement => {
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default withStyles(ProductDetailStyle)(ProductDetail)
+export default withStyles(ProductDetailStyle)(ProductDetail);

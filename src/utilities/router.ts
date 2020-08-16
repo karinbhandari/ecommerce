@@ -1,12 +1,11 @@
-import Router from 'next/router'
+import { NextRouter } from 'next/router';
 
-const goBack = (): void => {
-  Router.back()
-}
+const goBack = (router: NextRouter): void => {
+  router.back();
+};
 
-const navigateTo = (href: string, as: string): void => {
-  console.log('Going to naviate')
-  Router.push(href, as)
-}
+const navigateTo = (href: string, as: string, router: NextRouter): void => {
+  router.push(href, as);
+};
 
-export { goBack, navigateTo }
+export { goBack, navigateTo };

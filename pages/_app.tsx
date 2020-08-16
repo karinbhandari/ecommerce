@@ -1,77 +1,58 @@
-import React, { useEffect, useState, ReactNode } from 'react'
-import { AppProps } from 'next/app'
-import { ApolloProvider } from '@apollo/react-hooks'
-import { useApollo } from '../src/config/apollo/apolloClient'
-import { ThemeProvider } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import NextNprogress from 'nextjs-progressbar'
+import React, { useEffect, useState, ReactNode, ReactElement } from 'react';
+import { NextPage } from 'next';
+import { AppProps } from 'next/app';
+import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 // import * as Sentry from '@sentry/node';
-import theme from '../src/styles/theme'
-import Context from '../src/context'
-// import { SuperUserMenu, AdminMenu } from '../src/modules/core/components/Layout/menu'
-import { context as contextType } from '../src/context/interface'
+import theme from '../src/styles/theme';
+import Context from '../src/context';
+import { context as contextType } from '../src/context/interface';
 // import { NextPageContext } from 'next'
-// import nextCookie from 'next-cookies'
-import SnackBar from '../src/modules/core/components/SnackBar/SnackBar'
-// import { snackMessage as  } from '../src/modules/interfaces'
-import RTL from '../src/styles/rtl'
-import { snackMessage as snackMessageType } from '../src/modules/core/components/SnackBar/label'
-import '../node_modules/slick-carousel/slick/slick.css'
-import '../node_modules/slick-carousel/slick/slick-theme.css'
-
-// import { addToCookie } from '../src/utilities/storageFunc'
+import SnackBar from '../src/modules/core/components/SnackBar/SnackBar';
+import { snackMessage as snackMessageType } from '../src/modules/core/components/SnackBar/label';
+import '../node_modules/slick-carousel/slick/slick.css';
+import '../node_modules/slick-carousel/slick/slick-theme.css';
+import { wrapper } from '../src/redux/store';
 
 // Sentry.init({
 //   enabled: process.env.NODE_ENV === 'production',
 //   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 // })
 
-const App = (props: AppProps): ReactNode => {
-  const { Component, pageProps } = props
-  const apolloClient = useApollo(pageProps?.initialApolloState)
+const App: NextPage<AppProps> = (props: AppProps): ReactElement => {
+  const { Component, pageProps } = props;
 
   const [snackMessage, setSnackMessage] = useState<snackMessageType>({
     snackOpen: false,
     message: '',
     type: '',
-  })
+  });
 
   const contextValue: contextType = {
     lang: 'en',
     snackMessage: snackMessage,
     setSnackMessage: (message: snackMessageType) => {
-      setSnackMessage(message)
+      setSnackMessage(message);
     },
-  }
+  };
 
   useEffect(() => {
     // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side')
+    const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
-      jssStyles.parentElement!.removeChild(jssStyles)
+      jssStyles.parentElement!.removeChild(jssStyles);
     }
-  }, [])
+  }, []);
 
   return (
     <React.Fragment>
-      <RTL>
-        <ApolloProvider client={apolloClient}>
-          <Context.Provider value={contextValue}>
-            <ThemeProvider theme={theme}>
-              <SnackBar />
-              <CssBaseline />
-              <Component {...pageProps} />
-              {/* <NextNprogress
-                color="#0189e6"
-                height="3"
-                options={{
-                  showSpinner: false,
-                }}
-              /> */}
-            </ThemeProvider>
-          </Context.Provider>
-        </ApolloProvider>
-      </RTL>
+      <Context.Provider value={contextValue}>
+        <ThemeProvider theme={theme}>
+          <SnackBar />
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </Context.Provider>
       <style jsx global>
         {`
           * {
@@ -126,7 +107,7 @@ const App = (props: AppProps): ReactNode => {
         `}
       </style>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default App
+export default wrapper.withRedux(App);
