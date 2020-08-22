@@ -1,7 +1,7 @@
-import { SuperUserMenu } from '../modules/core/components/Layout/menu'
-import { context } from './interface'
+import { SuperUserMenu } from '../modules/core/components/Layout/menu';
+import { context } from './interface';
 
-import { context as contextType } from 'react'
+import { context as contextType } from 'react';
 
 const dummyContext: contextType = {
   lang: 'en',
@@ -13,10 +13,10 @@ const dummyContext: contextType = {
     type: '',
   },
   setSnackMessage: jest.fn(),
-}
+};
 
 test('to be truthy', () => {
-  expect(2 + 2).toBe(4)
-})
+  expect(2 + 2).toBe(4);
+});
 
-export { dummyContext }
+export { dummyContext };

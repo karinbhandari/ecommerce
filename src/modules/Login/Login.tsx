@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles'
-import { Paper, Typography, TextField, Button } from '@material-ui/core'
-import Link from 'next/link'
-import Password from '../core/components/Password/Password'
-import utilities from '../../styles/utilities'
+import React, { useState } from 'react';
+import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { Paper, Typography, TextField, Button } from '@material-ui/core';
+import Link from 'next/link';
+import Password from '../core/components/Password/Password';
+import utilities from '../../styles/utilities';
 
 const LoginStyle = (theme: Theme) =>
   createStyles({
@@ -29,11 +29,11 @@ const LoginStyle = (theme: Theme) =>
     loginButton: {
       padding: theme.spacing(1, 0),
     },
-  })
+  });
 
-type LoginProps = {}
+type LoginProps = {};
 
-type LoginStyleType = LoginProps & WithStyles<typeof LoginStyle>
+type LoginStyleType = LoginProps & WithStyles<typeof LoginStyle>;
 
 const Login = ({ classes }: LoginStyleType) => {
   return (
@@ -69,7 +69,7 @@ const Login = ({ classes }: LoginStyleType) => {
         </Button>
       </div>
     </Paper>
-  )
-}
+  );
+};
 
-export default withStyles(LoginStyle)(Login)
+export default withStyles(LoginStyle)(Login);

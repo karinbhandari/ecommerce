@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles'
-import { Paper, Typography, TextField, Button, Checkbox } from '@material-ui/core'
-import Link from 'next/link'
-import Password from '../core/components/Password/Password'
-import utilities from '../../styles/utilities'
+import React, { useState } from 'react';
+import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { Paper, Typography, TextField, Button, Checkbox } from '@material-ui/core';
+import Link from 'next/link';
+import Password from '../core/components/Password/Password';
+import utilities from '../../styles/utilities';
 
 const SignupStyle = (theme: Theme) =>
   createStyles({
@@ -33,11 +33,11 @@ const SignupStyle = (theme: Theme) =>
     signupButton: {
       padding: theme.spacing(1, 0),
     },
-  })
+  });
 
-type SignupProps = {}
+type SignupProps = {};
 
-type SignuptyleType = SignupProps & WithStyles<typeof SignupStyle>
+type SignuptyleType = SignupProps & WithStyles<typeof SignupStyle>;
 
 const Signup = ({ classes }: SignuptyleType) => {
   return (
@@ -77,7 +77,7 @@ const Signup = ({ classes }: SignuptyleType) => {
         </Typography>
       </div>
     </Paper>
-  )
-}
+  );
+};
 
-export default withStyles(SignupStyle)(Signup)
+export default withStyles(SignupStyle)(Signup);

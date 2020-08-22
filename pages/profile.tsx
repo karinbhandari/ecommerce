@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import Layout from '../src/modules/core/components/Layout'
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles'
-import utilities from '../src/styles/utilities'
-import { Typography, Theme, Avatar, Tabs, Tab } from '@material-ui/core'
-import PersonOutlineRoundedIcon from '@material-ui/icons/PersonOutlineRounded'
-import TabPanel from '../src/modules/core/components/TabPanel/TabPanel'
-import Login from '../src/modules/Login/Login'
-import Signup from '../src/modules/Signup/Signup'
+import React, { useState } from 'react';
+import Layout from '../src/modules/core/components/Layout';
+import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import utilities from '../src/styles/utilities';
+import { Typography, Theme, Avatar, Tabs, Tab } from '@material-ui/core';
+import PersonOutlineRoundedIcon from '@material-ui/icons/PersonOutlineRounded';
+import TabPanel from '../src/modules/core/components/TabPanel/TabPanel';
+import Login from '../src/modules/Login/Login';
+import Signup from '../src/modules/Signup/Signup';
 
 const ProfileStyle = (theme: Theme) =>
   createStyles({
@@ -51,18 +51,18 @@ const ProfileStyle = (theme: Theme) =>
       borderTop: `1px solid ${theme.palette.grey[50]}`,
       borderBottom: `1px solid ${theme.palette.grey[50]}`,
     },
-  })
+  });
 
-type ProfileProps = {}
+type ProfileProps = {};
 
-type ProfileStyleType = ProfileProps & WithStyles<typeof ProfileStyle>
+type ProfileStyleType = ProfileProps & WithStyles<typeof ProfileStyle>;
 
 const Profile = ({ classes }: ProfileStyleType) => {
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState(0);
 
   const handleTabChange = (event, newValue) => {
-    setValue(newValue)
-  }
+    setValue(newValue);
+  };
   return (
     <Layout>
       <div className={classes.profileWrap}>
@@ -101,7 +101,7 @@ const Profile = ({ classes }: ProfileStyleType) => {
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default withStyles(ProfileStyle)(Profile)
+export default withStyles(ProfileStyle)(Profile);
