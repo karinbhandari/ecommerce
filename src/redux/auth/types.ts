@@ -1,6 +1,6 @@
 export type initialAuthStateTypes = {
-  token: string
-}
+  token: string;
+};
 
 export enum authActionTypes {
   LOGIN_REQUEST = '@@heroes/LOGIN_REQUEST',

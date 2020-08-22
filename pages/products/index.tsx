@@ -14,9 +14,10 @@ import {
 } from '@material-ui/core';
 import TuneRoundedIcon from '@material-ui/icons/TuneRounded';
 import Filters from '../../src/modules/core/components/Filters/Filters';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { searchProducts } from '../../src/redux/product/product.actions';
 import { AppActions } from '../../src/redux/types';
+import { selectSearchedProductsList } from '../../src/redux/product/product.selectors';
 
 const ProductsStyles = (theme: Theme) =>
   createStyles({
@@ -69,18 +70,19 @@ const ProductsStyles = (theme: Theme) =>
 type ProductStylesT = WithStyles<typeof ProductsStyles>;
 
 const Products: NextPage<ProductStylesT> = ({ classes }: ProductStylesT): ReactElement => {
-  const dispatch: Dispatch<AppActions> = useDispatch();
+  const searchedProductsList: any = useSelector(selectSearchedProductsList);
 
   const [toogleFilter, setToggleFilter] = useState<boolean>(false);
   const toogleFilterHandler = (): void => {
     setToggleFilter((prevState) => !prevState);
   };
-  useEffect(() => {
-    dispatch(
-      searchProducts({ something: 'something', api_key: 'Ydn0CIuq4U680KrU0ct9mG2cMYpwEpTw' })
-    );
-  }, []);
+  // useEffect(() => {
+  //   dispatch(
+  //     searchProducts({ something: 'something', api_key: 'Ydn0CIuq4U680KrU0ct9mG2cMYpwEpTw' })
+  //   );
+  // }, []);
   // console.log()
+  // console.log('searchedProductsList ==========> ', searchedProductsList);
   return (
     <Layout>
       <div className={classes.productsWrap}>
@@ -114,16 +116,24 @@ const Products: NextPage<ProductStylesT> = ({ classes }: ProductStylesT): ReactE
         </div>
         <div className={classes.productsBody}>
           <Filters toogleFilter={toogleFilter} />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {searchedProductsList?.length < 1 ? (
+            <>
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+            </>
+          ) : (
+            searchedProductsList?.map((product, index) => (
+              <ProductCard productDetail={product} key={index} index={index} />
+            ))
+          )}
         </div>
       </div>
     </Layout>

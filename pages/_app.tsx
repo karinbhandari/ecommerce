@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ReactNode, ReactElement } from 'react';
+import React, { useEffect, useState, ReactNode, ReactElement, Dispatch } from 'react';
 import { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -13,6 +13,9 @@ import { snackMessage as snackMessageType } from '../src/modules/core/components
 import '../node_modules/slick-carousel/slick/slick.css';
 import '../node_modules/slick-carousel/slick/slick-theme.css';
 import { wrapper } from '../src/redux/store';
+import { useDispatch } from 'react-redux';
+import { AppStateType } from '../src/redux/types';
+import { loadTheCart } from '../src/redux/profile/profile.actions';
 
 // Sentry.init({
 //   enabled: process.env.NODE_ENV === 'production',
@@ -21,6 +24,8 @@ import { wrapper } from '../src/redux/store';
 
 const App: NextPage<AppProps> = (props: AppProps): ReactElement => {
   const { Component, pageProps } = props;
+
+  const dispatch = useDispatch();
 
   const [snackMessage, setSnackMessage] = useState<snackMessageType>({
     snackOpen: false,
@@ -35,6 +40,10 @@ const App: NextPage<AppProps> = (props: AppProps): ReactElement => {
       setSnackMessage(message);
     },
   };
+
+  useEffect(() => {
+    dispatch(loadTheCart());
+  });
 
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -79,31 +88,17 @@ const App: NextPage<AppProps> = (props: AppProps): ReactElement => {
           code {
             font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
           }
-          .slick-slider {
-            // border: 2px solid red;
-            display: flex;
-            flex-direction: column;
-          }
-          .slick-list {
-            height: 400px;
-            width: 100%;
-            // border: 2px solid green;
+          .slick-list > div > div {
+            border-color: #ffffff !important;
           }
           .slick-dots {
-            position: relative;
-            bottom: 0px;
-            // border: 2px solid blue;
-            display: flex !important;
-            flex-direction: row;
-            justify-content: flex-start;
+            position: unset !important;
+            // border: 1px solid red;
           }
-          .slick-dots > li {
-            height: 50px !important;
-            width: 50px;
+          .slick-active {
+            border: 1px solid #333333 !important;
+            border-radius: 2px;
           }
-          // .slick-dots > li > img {
-          //   border: 1px solid red;
-          // }
         `}
       </style>
     </React.Fragment>

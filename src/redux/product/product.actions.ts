@@ -6,7 +6,8 @@ import {
 } from './product.interfaces';
 import { Action } from 'redux';
 
-const searchProducts = (query: object): ActionType<Action> => action(SEARCH_PRODUCT, query);
+const searchProducts = (searchTerm: string): ActionType<Action> =>
+  action(SEARCH_PRODUCT, searchTerm);
 
 const searchProductsSuccess = (searchProductsResp: Array<object>): ActionType<Action> =>
   action(SEARCH_PRODUCT_SUCCESS, searchProductsResp);

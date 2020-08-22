@@ -1,13 +1,13 @@
-import { createStyles } from "@material-ui/core/styles"
+import { createStyles } from '@material-ui/core/styles';
 
 const utilities = createStyles({
   productTitle: {
     fontSize: '14px !important',
-    fontWeight: 600
+    fontWeight: 600,
   },
   productPrice: {
     fontSize: '14px !important',
-    fontWeight: 600
+    fontWeight: 600,
   },
   productDesc: {
     fontSize: '12px !important',
@@ -15,6 +15,12 @@ const utilities = createStyles({
   rowFlex: {
     display: 'flex',
     flexDirection: 'row',
+  },
+  rowFlexSpaceBetween: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   // rowFlexStart: {
   //   display: 'flex',
@@ -26,13 +32,13 @@ const utilities = createStyles({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
   },
   rowFlexEndCenter: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   columnFlex: {
     display: 'flex',
@@ -50,6 +56,6 @@ const utilities = createStyles({
     justifyContent: 'center',
     alignItems: 'center',
   },
-})
+});
 
-export default utilities
+export default utilities;

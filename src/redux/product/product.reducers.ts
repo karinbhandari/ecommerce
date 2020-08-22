@@ -8,12 +8,11 @@ import { AppActions, AppStateType } from '../types';
 
 const productReducer = (state = AppState.product, action: AppActions): AppStateType['product'] => {
   switch (action.type) {
-    // case SEARCH_PRODUCT:
-    //   return { ...state };
     case SEARCH_PRODUCT_SUCCESS:
-      return { ...state, searchedProductsResp: action.searchedProductsResp };
+      return { ...state, searchedProductList: action.payload };
     case SEARCH_PRODUCT_FAILURE:
-      return { ...state, searchedProductsErr: action.searchedProductsErr };
+      console.log('SEARCH_PRODUCT_FAILURE is running');
+      return { ...state, searchedProductsErr: action.payload };
     default:
       return { ...state };
   }

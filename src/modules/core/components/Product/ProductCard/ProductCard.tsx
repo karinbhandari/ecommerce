@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, Dispatch, useState } from 'react';
 import { createStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/styles';
 import {
@@ -18,6 +18,11 @@ import Link from 'next/link';
 import { RouteType } from 'next/dist/lib/load-custom-routes';
 import { useRouter, NextRouter } from 'next/router';
 import theme from '../../../../../styles/theme';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppActions, AppStateType } from '../../../../../redux/types';
+import { addToCart } from '../../../../../redux/profile/profile.actions';
+import { Selector } from 'reselect';
+import { getAddToCartErr } from '../../../../../redux/profile/profile.selectors';
 
 const ProductCardStyles = (theme: Theme) =>
   createStyles({
@@ -63,48 +68,84 @@ const ProductCardStyles = (theme: Theme) =>
     productCardActions: {
       width: '100%',
       height: 40,
+      '& > div': {
+        width: '50%',
+        height: 40,
+        ...utilities.rowFlexCenter,
+      },
       // border: '1px solid red',
     },
   });
 
-type ProductCardProps = {};
+type ProductCardProps = {
+  productDetail?: any;
+  index?: number;
+};
 
 type ProductCardStylesProps = ProductCardProps & WithStyles<typeof ProductCardStyles>;
 
-const ProductCard = ({ classes }: ProductCardStylesProps): ReactElement => {
+const ProductCard = ({ classes, productDetail, index }: ProductCardStylesProps): ReactElement => {
   const router: NextRouter = useRouter();
+
+  const [productDetails, setProductDetails] = useState<any>({
+    productTitle: productDetail?.product_title || 'Nautica',
+    productDesc: productDetail?.product_desc || 'Printed Polo Color TShirt',
+    productPrice: productDetail?.product_price || '500',
+    productImage:
+      productDetail?.images?.[0] ||
+      'https://lsco.scene7.com/is/image/lsco/288330637-front-pdp?$grid_desktop_bottoms$',
+    productUrl: productDetail?.product_url || 'demo-product',
+  });
+  // const getAddToCartError: string = useSelector(getAddToCartErr);
+  const dispatch: Dispatch<AppActions> = useDispatch();
+  const addToCartHandler = () => {
+    const dummyProductObj = {
+      pName: 'Hattie K Voops',
+      pDesc:
+        'This brand runs true to size. To ensure the best fit, we suggest consulting the size chart.',
+      pSize: 'XL',
+      pQty: '1',
+      pPrice: '500',
+    };
+    dispatch(addToCart(dummyProductObj));
+  };
   return (
-    <div className={classes.root}>
+    <div className={classes.root} key={index}>
       <Card className={classes.productWrap}>
-        <Link href="/products/[product-detail]" as="/products/demo-product">
+        <Link href="/products/[product-detail]" as={`/products/${productDetails?.productUrl}`}>
           <CardMedia
             className={classes.productCardImages}
-            image="https://lsco.scene7.com/is/image/lsco/288330637-front-pdp?$grid_desktop_bottoms$"
+            image={productDetails?.productImage}
+            // image="https://lsco.scene7.com/is/image/lsco/288330637-front-pdp?$grid_desktop_bottoms$"
             title="product"
           />
         </Link>
-        <CardActions className={classes.productCardActions}>
-          <IconButton aria-label="add to favorites">
-            <FavoriteBorderOutlinedIcon />
-          </IconButton>
-          <IconButton aria-label="add to favorites">
-            <VisibilityIcon />
-          </IconButton>
-          <IconButton aria-label="add to favorites">
-            <LocalMallOutlinedIcon />
-          </IconButton>
-        </CardActions>
         <CardContent className={classes.productCardDesc}>
-          <Typography variant="body1" component="p">
-            Nautica
+          <Typography variant="body1" noWrap component="p">
+            {productDetails?.productTitle}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Printed Polo Color TShirt
+          <Typography variant="body2" noWrap color="textSecondary" component="p">
+            {productDetails?.productDesc?.split('<p>')}
           </Typography>
           <Typography variant="body1" component="p">
-            Rs 1000
+            {`Rs. ${productDetails?.productPrice}`}
           </Typography>
         </CardContent>
+        <CardActions className={classes.productCardActions}>
+          <div>
+            <IconButton aria-label="add to favorites">
+              <FavoriteBorderOutlinedIcon />
+            </IconButton>
+          </div>
+          {/* <IconButton aria-label="quick view">
+            <VisibilityIcon />
+          </IconButton> */}
+          <div>
+            <IconButton aria-label="add to bag" onClick={addToCartHandler}>
+              <LocalMallOutlinedIcon />
+            </IconButton>
+          </div>
+        </CardActions>
       </Card>
     </div>
   );

@@ -6,3 +6,7 @@
 6. Do Other feature.
 
 7. We also need to work for desktop view
+
+IMPORTANT:
+1. Need to manage error (addToCartErr, update error) more nicely
+2. Write type for the response and data you going to pass very useful

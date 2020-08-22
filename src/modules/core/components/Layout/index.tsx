@@ -120,7 +120,7 @@ const Layout = ({
   const [value, setValue] = useState<number>(0);
 
   const navigateTo = (tag: string): void => {
-    router.push(`/${tag}`, `/${tag}`);
+    router.push(`${tag}`, `${tag}`);
   };
 
   useEffect(() => {
@@ -160,13 +160,13 @@ const Layout = ({
           value={value}
           onChange={(event, newValue) => {
             if (newValue === 0) {
-              navigateTo('');
+              navigateTo('/');
             } else if (newValue === 1) {
-              navigateTo('sale');
+              navigateTo('/sale');
             } else if (newValue === 2) {
-              navigateTo('whishlist');
+              navigateTo('/checkout/wishlist');
             } else if (newValue === 3) {
-              navigateTo('profile');
+              navigateTo('/profile');
             }
           }}
           showLabels
@@ -175,7 +175,7 @@ const Layout = ({
 
           <BottomNavigationAction label="Sale" icon={<WhatshotOutlinedIcon />} />
 
-          <BottomNavigationAction label="Whishlist" icon={<FavoriteBorderOutlinedIcon />} />
+          <BottomNavigationAction label="Wishlist" icon={<FavoriteBorderOutlinedIcon />} />
 
           <BottomNavigationAction label="Profile" icon={<AccountCircleOutlinedIcon />} />
         </BottomNavigation>

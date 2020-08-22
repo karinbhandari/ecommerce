@@ -1,21 +1,24 @@
+import { delay, put } from 'redux-saga/effects';
+import { AppActions } from '../types';
 import { getWithoutHeader, getWithHeader } from '../../api/rest/apiFunc';
 import { ROOT_URL, PRODUCT_SEARCH_LINK } from '../../api/rest/links';
-import { AppActions } from '../types';
+import { searchProductsSuccess, searchProductsFailure } from './product.actions';
+import { apiFuncReturnTypes } from '../../api/interfaces';
 
 function* searchProductsWorker(action: AppActions): Generator {
-  yield console.log('App actions ============+> ', action);
+  yield delay(500);
   try {
-    const { data: searchedProductsResp, error: searchedProductsErr } = yield getWithHeader(
-      `${ROOT_URL}${PRODUCT_SEARCH_LINK}?api_key=Ydn0CIuq4U680KrU0ct9mG2cMYpwEpTw&s=tshirt`,
-      action.payload,
-      (data) => {
-        console.log('search Product resp ==================> ', data);
-      },
-      (err) => {
-        console.log('search Product resp ==================> ', err);
-      }
+    const { data: searchedProductsResp, err: searchedProductsErr }: any = yield getWithHeader(
+      `${ROOT_URL}${PRODUCT_SEARCH_LINK}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&s=${action?.payload}`,
+      action.payload
     );
-  } catch (error) {}
+
+    if (searchedProductsResp) yield put(searchProductsSuccess(searchedProductsResp));
+
+    if (searchedProductsErr) yield put(searchProductsFailure(searchedProductsErr));
+  } catch (error) {
+    yield put(searchProductsFailure(error.message));
+  }
 }
 
 export { searchProductsWorker };

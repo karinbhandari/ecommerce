@@ -2,5 +2,6 @@
 
 import * as counterActions from './counter/counter.actions';
 import * as productActions from './product/product.actions';
+import * as profileActions from './profile/profile.actions';
 
-export { counterActions, productActions };
+export { counterActions, productActions, profileActions };

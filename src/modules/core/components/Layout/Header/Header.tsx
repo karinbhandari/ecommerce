@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
 import { NextComponentType } from 'next';
 import {
   withStyles,
@@ -7,6 +7,7 @@ import {
   WithStyles,
   IconButton,
   Typography,
+  Badge,
 } from '@material-ui/core';
 import { HeaderProps } from '../interfaces';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
@@ -16,7 +17,9 @@ import SearchBox from '../../SearchBox/SearchBox';
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 import { NextRouter, useRouter } from 'next/router';
-import { goBack } from '../../../../../utilities/router';
+import { goBack, navigateTo } from '../../../../../utilities/router';
+import { useSelector } from 'react-redux';
+import { countTotalProductsInCart } from '../../../../../redux/profile/profile.selectors';
 
 const drawerWidth = 250;
 
@@ -104,12 +107,17 @@ const Header = ({
 }: HeaderStylesProps): ReactElement => {
   const lang = 'en';
   const router: NextRouter = useRouter();
+  const totalProductsInCart = useSelector(countTotalProductsInCart);
   const [showSearchBox, setShowSearchBox] = useState<boolean | undefined>(false);
+
   const openDrawer = () => {
     toggleDrawer(true);
   };
   const showSearchBoxHandler = () => {
     setShowSearchBox(true);
+  };
+  const cartButtonClickedHandler = () => {
+    navigateTo('/checkout/cart', '/checkout/cart', router);
   };
   return (
     <div className={classes.headerWrap}>
@@ -144,8 +152,10 @@ const Header = ({
             </IconButton>
           </div>
           <div className={classes.headerIcon}>
-            <IconButton onClick={() => {}}>
-              <LocalMallOutlinedIcon />
+            <IconButton onClick={cartButtonClickedHandler}>
+              <Badge color="secondary" badgeContent={totalProductsInCart} showZero>
+                <LocalMallOutlinedIcon />
+              </Badge>
             </IconButton>
           </div>
         </div>

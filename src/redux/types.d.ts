@@ -14,10 +14,17 @@ export interface AppStateType {
     count: number;
   };
   readonly product: {
-    searchedProductsResp: Array;
+    searchedProductList: Array;
     searchedProductsErr: object;
   };
-  // readonly auth: {
-  //   token: string;
-  // };
+  readonly profile: {
+    profileDetail: object;
+    productsInCart: Array<object>;
+    cartErr: string;
+    productsInWishList: Array;
+    wishListErr: string;
+  };
+  readonly auth: {
+    token: string;
+  };
 }

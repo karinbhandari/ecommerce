@@ -1,6 +1,7 @@
 import { all } from 'redux-saga/effects';
 import { authWatchers } from './auth/watcher';
 import { productWatchers } from './product/product.watchers';
+import { profileWatchers } from './profile/profile.watchers';
 
 // import {
 //    userActions, userApi, userReducer, usersWatchers
@@ -9,7 +10,7 @@ import { productWatchers } from './product/product.watchers';
 //    listActions, listApi, listReducer, listsWatchers,
 // } from "./lists";
 export default function* rootSagas(): Generator {
-  const watchers = [...authWatchers, ...productWatchers];
+  const watchers = [...authWatchers, ...productWatchers, ...profileWatchers];
   yield all(watchers);
 }
 

@@ -12,56 +12,13 @@ import {
   Checkbox,
   Theme,
 } from '@material-ui/core';
-import MuiAccordion from '@material-ui/core/Accordion';
-import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
-import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 // import AddRoundedIcon from '@material-ui/icons/AddRounded';
 // import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded';
 import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
 import utilities from '../../../../styles/utilities';
-
-const Accordion = withStyles((theme: Theme) => ({
-  root: {
-    border: `1px solid ${theme.palette.grey[50]}`,
-    width: '100%',
-    boxShadow: 'none',
-    '&:not(:last-child)': {
-      borderBottom: 0,
-    },
-    '&:before': {
-      display: 'none',
-    },
-    '&$expanded': {
-      margin: 'auto',
-    },
-  },
-  expanded: {},
-}))(MuiAccordion);
-
-const AccordionSummary = withStyles({
-  root: {
-    marginBottom: -1,
-    minHeight: 56,
-    '&$expanded': {
-      minHeight: 56,
-    },
-  },
-  content: {
-    '&$expanded': {
-      margin: '12px 0',
-    },
-  },
-  expanded: {},
-})(MuiAccordionSummary);
-
-const AccordionDetails = withStyles((theme: Theme) => ({
-  root: {
-    padding: theme.spacing(2),
-    background: '#f9f9f9',
-  },
-}))(MuiAccordionDetails);
+import { Accordion, AccordionSummary, AccordionDetails } from '../Accordion/Accordion';
 
 const FiltersStyles = (theme: Theme) =>
   createStyles({
