@@ -61,7 +61,6 @@
     "@typescript-eslint/eslint-plugin": "^3.3.0",
     "@typescript-eslint/parser": "^3.3.0",
     "babel-jest": "^26.0.1",
-    "cypress": "^4.8.0",
     "eslint": "^7.3.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-cypress": "^2.11.1",
