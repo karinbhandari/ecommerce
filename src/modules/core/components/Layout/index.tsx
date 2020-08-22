@@ -162,7 +162,7 @@ const Layout = ({
             if (newValue === 0) {
               navigateTo('/');
             } else if (newValue === 1) {
-              navigateTo('/sale');
+              navigateTo('/products');
             } else if (newValue === 2) {
               navigateTo('/checkout/wishlist');
             } else if (newValue === 3) {
